@@ -22,99 +22,106 @@
     </script>
     <style>
         body {
-            background-color: #F8FAFC; /* Light gray background for the whole page */
+            background-color: #F8FAFC;
         }
         .main-container {
             max-width: 1400px;
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05 );
-            overflow: hidden; /* Ensures child elements conform to border radius */
+            overflow: hidden;
         }
         .custom-input {
-            border: none;
-            border-bottom: 1px solid #E5E7EB; /* Light gray bottom border */
-            border-radius: 0;
-            padding-left: 0;
+            border: 1px solid #E5E7EB;
+            border-radius: 10px;
+            padding: 10px;
         }
         .custom-input:focus {
             outline: none;
             box-shadow: none;
-            border-bottom-color: #A3E635; /* Green border on focus */
+            border-color: #A3E635;
+        }
+         .modal-overlay {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
         }
     </style>
 </head>
-<body class="flex justify-center items-start md:items-center min-h-screen p-4">
+<body class="flex justify-center items-start min-h-screen p-2 sm:p-4 overflow-y-scroll scrollbar-none">
 
     <div class="main-container w-full">
         <!-- Header Section -->
-        <header class="flex justify-between items-center p-4 md:p-6 border-b">
-            <div>
+        <header class="flex flex-wrap justify-between items-center p-4 md:px-[10%] border-b gap-y-4">
+            <div class="w-full md:w-auto flex justify-center md:justify-start order-2 md:order-1">
                 <button class="bg-custom-green text-black font-bold px-5 py-2 rounded-md text-sm">Blog</button>
             </div>
-            <div class="flex items-center space-x-2">
+            <div class="w-1/2 md:w-auto flex justify-start items-center space-x-2 order-1 md:order-2">
                 <img src="assets/logo.png" alt="Donate Icon" class="w-8 h-8">
                 <span class="font-semibold text-gray-800 hidden sm:inline">Donate Bangladesh</span>
             </div>
-            <div class="flex items-center space-x-2">
-                <img src="assets/coin.png" alt="#">
-                <span class="font-bold text-gray-800">5500 BDT</span>
+            <div class="w-1/2 md:w-auto flex justify-end items-center space-x-2 order-1 md:order-3">
+                <img src="assets/coin.png" alt="Coin Icon">
+                <p><span id="main-amount" class="font-bold text-gray-800">5500</span> BDT</p>
             </div>
         </header>
 
-        <div class="p-4 md:p-8">
+        <div class="p-4 md:p-10">
             <!-- Tabs Section -->
-            <div class="mb-8 py-10">
+            <div class="mb-8 py-4 md:py-10">
                 <div class="flex space-x-2 justify-center">
-                    <button class="px-5 py-2 bg-custom-green text-black font-semibold rounded-md text-sm">Donation</button>
-                    <button class="px-5 py-2 text-gray-500 font-semibold rounded-md border border-gray-300 text-sm">History</button>
+                    <button id="donation-btn" class="px-5 py-2 bg-custom-green text-black font-semibold rounded-md text-sm">Donation</button>
+                    <button id="history-btn" class="px-5 py-2 text-gray-500 font-semibold rounded-md border border-gray-300 text-sm">History</button>
                 </div>
             </div>
 
-            <!-- Donation Cards Section -->
-            <div class="space-y-8 ">
+            <!-- Donation Cards Section start -->
+            <div id="donation-container" class="space-y-8 md:px-[8%]  ">
                 <!-- Card 1: Flood at Noakhali -->
-                <div class="flex flex-col md:flex-row gap-6 border p-6 rounded-xl">
+                <div class="flex flex-col md:flex-row gap-6 border p-4 sm:p-6 rounded-xl">
                     <div class="md:w-1/3">
                         <img src="assets/noakhali.png" alt="Flood rescue operation" class="rounded-lg w-full h-full object-cover">
                     </div>
                     <div class="md:w-2/3 flex flex-col">
                         <div class="flex items-center text-sm text-custom-orange mb-2">
                             <i class="fas fa-coins mr-2"></i>
-                            <span>0 BDT</span>
+                            <p><span id="donate-amount">2000</span>  BDT</p>
                         </div>
                         <h2 class="text-lg font-bold text-gray-800 mb-3">Donate for Flood at Noakhali, Bangladesh</h2>
                         <p class="text-gray-500 text-sm mb-6 leading-relaxed">
                             The recent floods in Noakhali have caused significant damage to homes, infrastructure. Your donation will help provide essential supplies and to those affected by this disaster. Every contribution, big or small, makes a difference. Please join us in supporting the relief efforts and making a positive impact on the lives of those in need.
                         </p>
-                            <input type="text" placeholder="Enter Donation Amount" class="custom-input w-full sm:w-auto flex-grow py-2 text-sm  ">
-                            <button class="bg-custom-green hover:bg-custom-green-darker text-black font-bold py-2.5 px-10 rounded-lg w-full sm:w-auto transition-colors">Donate 
+                        <div class="mt-auto space-y-4">
+                            <input id="input-amount" type="text" placeholder="Enter Donation Amount" class="input-value custom-input w-full py-3 text-sm">
+                            <button id="donate-now-btn" class=" bg-custom-green hover:bg-custom-green-darker text-black font-bold py-2.5 px-10 rounded-lg w-full md:w-full transition-colors">Donate Now</button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Card 2: Flood Relief in Feni -->
-                <div class="flex flex-col md:flex-row gap-6">
+                <div class="flex flex-col md:flex-row gap-6 border p-4 sm:p-6 rounded-xl">
                     <div class="md:w-1/3">
                         <img src="assets/feni.png" alt="Aerial view of flooded area" class="rounded-lg w-full h-full object-cover">
                     </div>
                     <div class="md:w-2/3 flex flex-col">
-                        <div class="flex items-center text-sm text-custom-orange mb-2">
+                        <div id="donate-amount-2" class="flex items-center text-sm text-custom-orange mb-2">
                             <i class="fas fa-coins mr-2"></i>
-                            <span>600 BDT</span>
+                            <p><span>600 </span>BDT</p>
                         </div>
                         <h2 class="text-lg font-bold text-gray-800 mb-3">Donate for Flood Relief in Feni, Bangladesh</h2>
                         <p class="text-gray-500 text-sm mb-6 leading-relaxed">
                             The recent floods in Feni have devastated local communities, leading to severe disruption and loss. Your generous donation will help provide immediate aid, including food, clean water, and medical supplies, to those affected by this calamity. Together, we can offer crucial support and help rebuild lives in the aftermath of this disaster.
                         </p>
-                        <div class="mt-auto flex flex-col sm:flex-row items-center gap-4">
-                            <input type="text" placeholder="Enter Donation Amount" class="custom-input w-full sm:w-auto flex-grow py-2 text-sm">
-                            <button class="bg-custom-green hover:bg-custom-green-darker text-black font-bold py-2.5 px-10 rounded-lg w-full sm:w-auto transition-colors">Donate Now</button>
+                        <div class="mt-auto space-y-4">
+                            <input id="input-amount-2" type="text" placeholder="Enter Donation Amount" class="input-value custom-input w-full py-3 text-sm">
+                            <button id="button2" class="donate-now-btn bg-custom-green hover:bg-custom-green-darker text-black font-bold py-2.5 px-10 rounded-lg w-full md:w-full transition-colors">Donate Now</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 3: Aid for Injured -->
-                <div class="flex flex-col md:flex-row gap-6">
+                <div class="flex flex-col md:flex-row gap-6 border p-4 sm:p-6 rounded-xl">
                     <div class="md:w-1/3">
                         <img src="assets/quota-protest.png" alt="People helping an injured person" class="rounded-lg w-full h-full object-cover">
                     </div>
@@ -127,15 +134,44 @@
                         <p class="text-gray-500 text-sm mb-6 leading-relaxed">
                             The recent Quota movement has resulted in numerous injuries and significant hardship for many individuals. Your support is crucial in providing medical assistance, rehabilitation, and necessary supplies to those affected. By contributing, you help ensure that injured individuals receive the core and support they need during this challenging time.
                         </p>
-                        <div class="mt-auto flex flex-col sm:flex-row items-center gap-4">
-                            <input type="text" placeholder="Enter Donation Amount" class="custom-input w-full sm:w-auto flex-grow py-2 text-sm">
-                            <button class="bg-custom-green hover:bg-custom-green-darker text-black font-bold py-2.5 px-10 rounded-lg w-full sm:w-auto transition-colors">Donate Now</button>
+                        <div class="mt-auto space-y-4">
+                            <input type="text" placeholder="Enter Donation Amount" class="input-value custom-input w-full py-3 text-sm">
+                            <button class="donate-now-btn bg-custom-green hover:bg-custom-green-darker text-black font-bold py-2.5 px-10 rounded-lg w-full md:w-full transition-colors">Donate Now</button>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- Donation Cards Section End -->
+             
+            <!-- History section Start -->
+             <section>
+                  <div id="history-container" class="hidden">
+                    <!-- History Content -->
+                        <div class="bg-white p-6 rounded-lg border">
+                            <h2 class="text-xl font-bold text-gray-800 mb-4">Your Donation History</h2>
+                           <div id="donate-history" class="flex flex-col gap-6 font-semibold"></div>
+                            <p class="text-center text-gray-500 mt-6">No more history.</p>
+                        </div>
+                 </div>
+             </section>
+            <!-- History section End -->
+             <!-- Modal Start  -->
+              <div id="confirmationModal" class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 hidden opacity-0">
+                <div class="modal-content bg-white p-8 rounded-2xl shadow-lg text-center w-full max-w-sm transform scale-95">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">Congrates!</h2>
+                    <img src="assets/coin.png" alt="Coin" class="w-16 h-16 mx-auto mb-4">
+                    <p class="text-gray-600 text-lg">You Have Donated for Humankind</p>
+                    <p class="text-2xl font-bold text-gray-800 mb-8">Successfully</p>
+                    <button id="closeModal" class="bg-gray-100 text-gray-600 font-semibold py-3 px-8 rounded-lg w-full hover:bg-gray-200 transition-colors">
+                        close confirmation
+                    </button>
+                 </div>
+              </div>
+             <!-- Modal End -->
         </div>
     </div>
-
+ <script src="js/script.js"></script>
+ <script src="js/donate.js"></script>
+ <script src="js/modal.js"></script>
 </body>
 </html>
