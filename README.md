@@ -2,7 +2,7 @@
 
 **Donate Bangladesh** হলো একটি রেসপন্সিভ ওয়েব অ্যাপ্লিকেশন যা ব্যবহারকারীদের বাংলাদেশে বিভিন্ন দুর্যোগ ও চ্যারিটি প্রজেক্টের জন্য অনলাইন ডোনেশন করার সুযোগ দেয়। এটি Tailwind CSS, Vanilla JavaScript, এবং HTML5 ব্যবহার করে তৈরি করা হয়েছে।  
 
-লাইভ ডেমো: *(তুমি যদি Vercel/Netlify link দিতে চাও, এখানে যোগ করবে)*
+লাইভ ডেমো: https://donate-smoky-xi.vercel.app/
 
 ---
 
@@ -21,7 +21,12 @@
 
 ## Screenshots
 
-*(Screenshot গুলো এখানে যোগ করবে, যেমন Home, Blog, Single Blog, Donation modal)*
+<img width="1346" height="637" alt="Screenshot 2025-10-29 164136" src="https://github.com/user-attachments/assets/f6b18d55-3ebb-4478-897e-94157a7fd3d9" />
+<img width="1344" height="641" alt="Screenshot 2025-10-29 164211" src="https://github.com/user-attachments/assets/9c0f0059-1f7b-47ac-86c5-a8522c4dc70b" />
+<img width="1350" height="645" alt="Screenshot 2025-10-29 164227" src="https://github.com/user-attachments/assets/9fe1a5b3-01b7-45b8-8901-9a1912e9e6f1" />
+<img width="1351" height="644" alt="Screenshot 2025-10-29 164255" src="https://github.com/user-attachments/assets/d30658ed-f9a3-49c1-86ea-be553f464ce6" />
+
+
 
 ---
 
