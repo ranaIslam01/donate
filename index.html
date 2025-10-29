@@ -48,28 +48,40 @@
             transition: transform 0.3s ease;
         }
     </style>
+    <!-- Css link -->
+    <link rel="stylesheet" href="styles/menu.css">
+    <!-- CDN link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="flex justify-center items-start min-h-screen p-2 sm:p-4 overflow-y-scroll scrollbar-none">
 
-    <div class="main-container w-full">
+    <div class="main-container w-full relative">
         <!-- Header Section -->
-        <header class="flex flex-wrap justify-between items-center p-4 md:px-[10%] border-b gap-y-4">
-            <div class="w-full md:w-auto flex justify-center md:justify-start order-2 md:order-1">
-                <button class="bg-custom-green text-black font-bold px-5 py-2 rounded-md text-sm">Blog</button>
+        <header id="navbar" class="fixed top-0 left-0 right-0 md:rounded-b-lg flex justify-between items-center p-4 md:px-[10%]">
+            <div id="list" class="list-menu flex gap-4 md:block">
+                <button id="home" class="bg-custom-green text-black font-bold px-5 py-2 rounded-md text-sm">Home</button>
+                <button id="blog"  class="px-5 py-2 text-gray-500 font-semibold rounded-md border border-gray-300 text-sm ">Blog</button>
             </div>
-            <div class="w-1/2 md:w-auto flex justify-start items-center space-x-2 order-1 md:order-2">
+            <div class="flex items-center space-x-2">
                 <img src="assets/logo.png" alt="Donate Icon" class="w-8 h-8">
                 <span class="font-semibold text-gray-800 hidden sm:inline">Donate Bangladesh</span>
             </div>
-            <div class="w-1/2 md:w-auto flex justify-end items-center space-x-2 order-1 md:order-3">
+            <div class="flex items-center space-x-2">
                 <img src="assets/coin.png" alt="Coin Icon">
                 <p><span id="main-amount" class="font-bold text-gray-800">5500</span> BDT</p>
             </div>
+            <div id="menu-btn" class="md:hidden ">
+                <i class="fa-solid fa-bars text-xl font-bold"></i>              
+            </div>
+            <div id="close-btn" class="hidden">
+                <i class="fa-solid fa-xmark text-xl font-bold"></i>
+            </div>
+
         </header>
 
-        <div class="p-4 md:p-10">
+        <div id="home-container" class="p-4 md:p-10 ">
             <!-- Tabs Section -->
-            <div class="mb-8 py-4 md:py-10">
+            <div class="mb-8 py-4 md:py-10 mt-20 ">
                 <div class="flex space-x-2 justify-center">
                     <button id="donation-btn" class="px-5 py-2 bg-custom-green text-black font-semibold rounded-md text-sm">Donation</button>
                     <button id="history-btn" class="px-5 py-2 text-gray-500 font-semibold rounded-md border border-gray-300 text-sm">History</button>
@@ -156,20 +168,175 @@
              </section>
             <!-- History section End -->
              <!-- Modal Start  -->
-              <div id="confirmationModal" class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 hidden opacity-0">
-                <div class="modal-content bg-white p-8 rounded-2xl shadow-lg text-center w-full max-w-sm transform scale-95">
-                    <h2 class="text-4xl font-bold text-gray-800 mb-4">Congrates!</h2>
-                    <img src="assets/coin.png" alt="Coin" class="w-16 h-16 mx-auto mb-4">
-                    <p class="text-gray-600 text-lg">You Have Donated for Humankind</p>
-                    <p class="text-2xl font-bold text-gray-800 mb-8">Successfully</p>
-                    <button id="closeModal" class="bg-gray-100 text-gray-600 font-semibold py-3 px-8 rounded-lg w-full hover:bg-gray-200 transition-colors">
-                        close confirmation
-                    </button>
-                 </div>
+              <div class="hidden">
+                    <div id="confirmationModal" class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 opacity-0">
+                        <div class="modal-content bg-white p-8 rounded-2xl shadow-lg text-center w-full max-w-sm transform scale-95">
+                            <h2 class="text-4xl font-bold text-gray-800 mb-4">Congrates!</h2>
+                            <img src="assets/coin.png" alt="Coin" class="w-16 h-16 mx-auto mb-4">
+                            <p class="text-gray-600 text-lg">You Have Donated for Humankind</p>
+                            <p class="text-2xl font-bold text-gray-800 mb-8">Successfully</p>
+                            <button id="closeModal" class="bg-gray-100 text-gray-600 font-semibold py-3 px-8 rounded-lg w-full hover:bg-gray-200 transition-colors">close confirmation</button>
+                         </div>
+                  </div>
               </div>
              <!-- Modal End -->
         </div>
+
+
+        <!-- Blog Page start  -->
+        <section >
+        <div id="blog-container" class="hidden  w-full  md:px-[8%]">
+            <!-- Main Content -->
+            <main class="p-4 md:p-10">
+                <!-- Page Title -->
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800">Our Blog</h1>
+                    <p class="text-gray-500 mt-2">Stay updated with our latest news, stories, and relief efforts.</p>
+                </div>
+        
+                <div class="flex flex-col lg:flex-row gap-10">
+                    <!-- Blog Posts Section -->
+                    <div class="w-full lg:w-2/3">
+                        <!-- Featured Post -->
+                        <div class="post-card group mb-10 cursor-pointer">
+                            <img src="assets/quota-protest.png" alt="Featured Blog Post" class="rounded-lg w-full h-80 object-cover mb-4">
+                            <div class="flex items-center text-sm text-gray-500 mb-2">
+                                <span>Feni Flood Relief</span>
+                                <span class="mx-2">&bull;</span>
+                                <span>October 29, 2025</span>
+                            </div>
+                            <h2 class="post-title text-3xl font-bold text-gray-800 mb-3 transition-colors">A Community United: How Your Donations Are Rebuilding Feni</h2>
+                            <p class="text-gray-600">Thanks to your incredible support, we have been able to provide immediate aid to hundreds of families in Feni. This post shares their stories of hope and resilience...</p>
+                            <button class="read-more text-custom-green-darker font-semibold mt-3 inline-block">Read More</button>
+                        </div>
+        
+                        <!-- Grid of Other Posts -->
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <!-- Post 1 -->
+                            <div class="post-card group cursor-pointer">
+                                <img src="assets/noakhali.png" alt="Blog Post" class="rounded-lg w-full h-48 object-cover mb-4">
+                                <div class="flex items-center text-sm text-gray-500 mb-2">
+                                    <span>Emergency Response</span>
+                                </div>
+                                <h3 class="post-title text-xl font-bold text-gray-800 mb-2 transition-colors">On the Frontlines in Noakhali</h3>
+                                <p class="text-gray-600 text-sm">Our rescue teams are working tirelessly. Here's a glimpse into their efforts.</p>
+                                <button class="read-more text-custom-green-darker font-semibold mt-3 inline-block">Read More</button>
+                            </div>
+                            <!-- Post 2 -->
+                            <div class="post-card group cursor-pointer">
+                                <img src="assets/feni.png" alt="Blog Post" class="rounded-lg w-full h-48 object-cover mb-4">
+                                <div class="flex items-center text-sm text-gray-500 mb-2">
+                                    <span>Medical Aid</span>
+                                </div>
+                                <h3 class="post-title text-xl font-bold text-gray-800 mb-2 transition-colors">Providing Hope and Healing</h3>
+                                <p class="text-gray-600 text-sm">Medical supplies and support are crucial. Learn how we are helping.</p>
+                                <button class="read-more text-custom-green-darker font-semibold mt-3 inline-block">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Sidebar -->
+        <aside class="w-full lg:w-1/3">
+            <div class="sticky top-10 p-6 bg-gray-50 rounded-lg">
+                <!-- Categories -->
+                <h3 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">Categories</h3>
+                <ul class="space-y-2 text-gray-600">
+                    <li><button class="read-more hover:text-custom-green-darker">Flood Relief (5)</button></li>
+                    <li><button class="read-more hover:text-custom-green-darker">Medical Aid (3)</button></li>
+                    <li><button class="read-more hover:text-custom-green-darker">Community Stories (8)</button></li>
+                    <li><button class="read-more hover:text-custom-green-darker">Emergency Response (4)</button></li>
+
+                </ul>
+
+                <!-- Tags -->
+                <h3 class="text-xl font-bold text-gray-800 mt-10 mb-4 border-b pb-2">Popular Tags</h3>
+                <div class="flex flex-wrap gap-2">
+                    <button class="read-more bg-gray-200 text-gray-700 text-sm font-semibold px-3 py-1 rounded-full hover:bg-gray-300">#Donation</button>
+                    <button class="read-more bg-gray-200 text-gray-700 text-sm font-semibold px-3 py-1 rounded-full
+                     hover:bg-gray-300">#Feni</button>
+                    <button class="read-more bg-gray-200 text-gray-700 text-sm font-semibold px-3 py-1 rounded-full hover:bg-gray-300">#Support</button>
+                    <button class="read-more bg-gray-200 text-gray-700 text-sm font-semibold px-3 py-1 rounded-full hover:bg-gray-300">#Volunteer</button>
+                    <button class="read-more bg-gray-200 text-gray-700 text-sm font-semibold px-3 py-1 rounded-full
+                     hover:bg-gray-300">#Hope</button>
+
+                </div>
+            </div>
+        </aside>
+                </div>
+            </main>
+        </div>
+        </section>
+        <!-- Blog Page End -->
+
+        <!-- Single Page Blog Start -->
+        <main id="single-page-blog" class="hidden p-4 md:p-10 mt-20 ">
+            <div class="flex flex-col lg:flex-row gap-10 md:px-[8%]">
+                <!-- Main Post Content -->
+                <article class="w-full lg:w-2/3 prose">
+                    <!-- Post Header -->
+                    <div class="mb-8">
+                        <h1 class="text-4xl md:text-5xl font-bold text-gray-800">A Community United: How Your Donations Are Rebuilding Feni</h1>
+                        <div class="flex items-center text-gray-500 mt-4">
+                            <img src="assets/quota-protest.png" alt="Author" class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <p class="font-semibold">By John Doe</p>
+                                <p class="text-sm">Published on October 29, 2025 &bull; 5 min read</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature Image -->
+                    <img src="assets/quota-protest.png" alt="Featured Blog Post" class="rounded-lg w-full object-cover mb-8">
+
+                    <!-- Post Body -->
+                    <p>The recent floods in Feni have left an indelible mark on its landscape and its people. Homes were submerged, livelihoods washed away, and hope began to dwindle. But in the face of this adversity, something incredible happened: a wave of human kindness, powered by donors like you, swept through the region.</p>
+                    
+                    <p>Thanks to your incredible support, we have been able to provide immediate aid to hundreds of families in Feni. This post shares their stories of hope and resilience, showcasing the profound impact of your generosity.</p>
+
+                    <blockquote>"We lost everything in the flood. We didn't know where our next meal would come from. Then, the volunteers from Donate Bangladesh arrived with food and clean water. It felt like a miracle." - Anwara Begum, a resident of a flood-affected village.</blockquote>
+
+                    <h2>The Relief Efforts in Action</h2>
+                    <p>Our teams on the ground have been working around the clock. The relief operation focused on three key areas: providing essential supplies, ensuring access to clean water, and offering medical assistance. Your donations funded:</p>
+                    <ul class="list-disc list-inside space-y-2 mb-6">
+                        <li><strong>Food Packages:</strong> Over 1,000 families received packages containing rice, lentils, oil, and other essential food items.</li>
+                        <li><strong>Water Purification:</strong> We installed three temporary water purification units, providing safe drinking water to over 5,000 people.</li>
+                        <li><strong>Medical Camps:</strong> Our mobile medical teams treated more than 500 patients for water-borne diseases and other ailments.</li>
+                    </ul>
+                    <p>The road to recovery is long, but with your continued support, we can help the people of Feni not just survive, but thrive once again. Every donation, no matter the size, contributes to rebuilding lives and restoring hope.</p>
+
+                    <!-- Comment Section -->
+                    <div class="mt-16">
+                        <h3 class="text-2xl font-bold mb-6">Leave a Comment</h3>
+                        <form class="space-y-4">
+                            <div>
+                                <label for="name" class="sr-only">Name</label>
+                                <input type="text" id="name" placeholder="Your Name" class="w-full p-3 border rounded-md">
+                            </div>
+                            <div>
+                                <label for="comment" class="sr-only">Comment</label>
+                                <textarea id="comment" rows="5" placeholder="Write your comment here..." class="w-full p-3 border rounded-md"></textarea>
+                            </div>
+                            <button type="submit" class="bg-custom-green text-black font-bold px-6 py-3 rounded-md hover:bg-custom-green-darker transition-colors">Post Comment</button>
+                        </form>
+                    </div>
+                </article>
+
+                <!-- Sidebar -->
+                <aside class="w-full lg:w-1/3">
+                    <div class="sticky top-10 p-6 bg-gray-50 rounded-lg">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">Recent Posts</h3>
+                        <ul class="space-y-4">
+                            <li><a href="#" class="font-semibold hover:text-custom-green-darker">On the Frontlines in Noakhali</a></li>
+                            <li><a href="#" class="font-semibold hover:text-custom-green-darker">Providing Hope and Healing</a></li>
+                            <li><a href="#" class="font-semibold hover:text-custom-green-darker">A Volunteer's Diary</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </main>
+        <!-- Main Content End -->
     </div>
+  <script src="js/menu.js"></script>
  <script src="js/script.js"></script>
  <script src="js/donate.js"></script>
  <script src="js/modal.js"></script>
